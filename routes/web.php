@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/member/list', [MemberController::class, 'list']);
+//use App\Http\Controllers\MemberController;
+
+Route::get('/member/list', 'MemberController@list');
