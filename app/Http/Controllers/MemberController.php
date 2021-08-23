@@ -15,17 +15,10 @@ class MemberController extends Controller
      */
     public function list(Request $request)
     {
-        $res = array();
-        $member = Member::get();
-        foreach ($member as $k => $value){
-            $res[$k] = $value;
-        }
-
-        print_r($res);
-        exit;
+        $member = Member::get()->toArray();
 
         $data  = array();
-        $data['items'] = $res;
+        $data['items'] = $member;
         $data['total'] =100;
         echo json_encode(["code" => 20000,'data'=>$data]);
     }
