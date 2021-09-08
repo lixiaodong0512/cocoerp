@@ -20,3 +20,5 @@ Route::get('/', function () {
 //use App\Http\Controllers\MemberController;
 
 Route::get('/member/list', 'MemberController@list');
+Route::post('/member/update', 'MemberController@update');
+Route::post('/member/create', 'MemberController@create');
