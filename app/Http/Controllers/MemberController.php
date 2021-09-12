@@ -52,7 +52,22 @@ class MemberController extends Controller
      */
     public function update(Request $request)
     {
-        print_r($request->all());
+        //因为没有做登录,操作人先暂定超级管理员
+        $member = Member::find(1);
+        if($member->phone != $request->post('phone')) {
+            $member->phone = $request->post('phone');
+            DB::beginTransaction();   //做一个事务处理就好了
+            try {
+                $member->save();
+                DB::commit();
+            } catch (Exception $e) {
+                DB::rollback();
+                throw $e; //将exception继续抛出  生产环境可以修改为报错后的操作
+            }
+        }
+
+        echo json_encode();
+
     }
 
     /**
